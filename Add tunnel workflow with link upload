@@ -1,0 +1,21 @@
+name: Deploy Tunnel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Tunnel
+        run: |
+          echo "hiddify://your-generated-link" > link.txt
+
+      - name: Upload Link
+        uses: actions/upload-artifact@v3
+        with:
+          name: hiddify-link
+          path: link.txt
